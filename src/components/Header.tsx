@@ -1,8 +1,9 @@
-import React from 'react'
+import { faFacebookF, faInstagram, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { faBars, faClock, faEnvelopeOpen, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from 'react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faPhone,faEnvelopeOpen,faClock} from '@fortawesome/free-solid-svg-icons'
-import {faFacebookF, faInstagram, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { Tablet } from '../tools/responsive';
 
 const Container = styled.div`
@@ -40,19 +41,29 @@ const TopRight = styled.div`
 `;
 const TopRightIcon = styled(FontAwesomeIcon)`
   color: rgba(255, 255, 255, 0.502);
-
+  cursor:pointer;
 `
 const Bottom = styled.div`
   padding: 8px 48px;
   display: flex;
-justify-content: space-between;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  transition: all 500ms ease;
+  ${Tablet({
+    paddingLeft: "24px",
+    paddingRight: "24px",
+    flexWrap:"wrap",
+  })}
+`;
+const LogoContainer = styled(Link)`
+display: inline-flex;
 align-items: center;
-width: 100%;
+gap: 16px;
+cursor: pointer;
+text-decoration: none;
 `;
 const Title = styled.h1`
-  display: inline-flex;
-  align-items: center;
-  gap: 20px;
   color: #15233C;
   font-weight: 500;
 `;
@@ -60,27 +71,93 @@ const Logo = styled.img`
   height: 60px;
   ${Tablet({height:45})}
 `;
-
-const Nav = styled.nav`
-  display: inline-flex;
+interface NavProps {
+  expanded: boolean
+}
+const Nav = styled.nav<NavProps>`
+  display: flex;
   gap: 24px;
   background-color: #F6F7FC;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 8px 16px;
+  ${({expanded})=> Tablet({
+    display: expanded ? "flex" : "none",
+    flexDirection: "column",
+    flexBasis:"100%",
+    flexGrow:1,
+    gap:0,
+    marginTop:24,
+    paddingTop:24,
+    paddingBottom:24,
+  })}
 `;
 interface NavItemProps {
   isActive?: boolean
 }
-const NavItem = styled.a<NavItemProps>`
+const NavItem = styled(NavLink)<NavItemProps>`
   color:#${({ isActive }) => isActive ? "275FC9": "696E77"};
-  transition: 500ms color ease-in;
+  transition: 350ms color ease-in;
   cursor: pointer;
+  text-decoration: none;
   &:hover {
     color:#275FC9;
   }
+  font-weight: 600;
+  font-size: 16px;
+  ${Tablet({padding: "8px 0"})}
 `;
-const BottonRightButton = styled.a`
-  border-radius: 5px;
+const DropDown = styled.div`
+  position:relative;
+  &:hover {
+    & > div{
+      visibility: visible;
+      opacity:1;
+      transform: translateY(-32px);
+    }
+  }
+  ${Tablet({
+    padding: "8px 0"
+  })}
+`;
+const DropDownNavItem = styled(NavItem)`
+  ::after{
+    content: "\f107";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    display:none;
+  }
+  & svg {
+    margin-left:8px;
+  }
+`;
+
+const DropDownList = styled.div`
+  position:absolute;
+  padding: 8px 0px;
+  display:flex;
+  flex-direction:column;
+  background-color: #F4F6FB;
+  border-radius: 10px;
+  right:0;
+  top:64px;
+  visibility: hidden;
+  opacity:0;
+  transform: translateY(0);
+  transition: all 500ms ease 0s;
+  `;
+const DropDownItem = styled(NavLink)`
+width: 160px;
+height:32px;
+padding:4px 16px;
+box-sizing: border-box;
+text-decoration: none;
+color:#1C1E21;
+&:hover {
+  background-color: #E5E9EC;
+}
+`;
+const QuoteButton = styled.a`
+  border-radius: 10px;
   color: #DFEBF8;
   background-color: #275FC9;
   padding: 6px 16px;
@@ -90,9 +167,43 @@ const BottonRightButton = styled.a`
   cursor:pointer;
   user-select: none;
   font-size:16px;
+  transition: all 0.5s ease;
+  &:hover {
+    background: #00D1EC;
+  }
+  ${Tablet({
+    display: "none"
+  })}
 `;
 
+const Bars = styled.button`
+display:none;
+${Tablet({display:"initial"})}
+  border: 1px solid #E5E5E5;
+  background-color: transparent;
+  color: #737373;
+  cursor:pointer;
+  padding: 8px 16px;
+  border-radius: 10px;
+  transition: all 150ms ease-in-out;
+  &:focus {
+    box-shadow: 0 0 0 4px ;
+  }
+`;
 const Header = () => {
+  const [activeLink, setActiveLink] = React.useState("home");
+   const {pathname} = useLocation()
+   React.useEffect(() => {
+    if(["/features",
+    "/appointment",
+    "/team",
+    "/testimonial",
+    "/404"].includes(pathname))
+    setActiveLink("page")
+    else
+    setActiveLink(pathname)
+   }, [pathname])
+   const [showNavbar, setShowNavbar] = React.useState(false);
   return (
     <Container>
       <Top>
@@ -119,17 +230,30 @@ const Header = () => {
         </TopRight>
       </Top>
       <Bottom>
-        <Title>
+        <LogoContainer to="/">
       <Logo src={`${process.env.PUBLIC_URL}/assets/icon/icon-02-primary.png`}/>
-        Insure </Title>
-        <Nav>
-          <NavItem>Home</NavItem>
-          <NavItem>About Us</NavItem>
-          <NavItem>Our Services</NavItem>
-          <NavItem>Pages</NavItem>
-          <NavItem>Contact Us</NavItem>
+        <Title>Insure </Title>
+        </LogoContainer>
+        <Bars onClick={()=>setShowNavbar(!showNavbar)}>
+          <FontAwesomeIcon icon={faBars} size="2x" />
+        </Bars>
+        <Nav expanded={showNavbar}>
+          <NavItem to="/" isActive={activeLink === "/"} >Home</NavItem>
+          <NavItem to="/about" isActive={activeLink === "/about"} >About Us</NavItem>
+          <NavItem to="/service" isActive={activeLink === "/service"} >Our Services</NavItem>
+          <DropDown>
+          <DropDownNavItem to="" onClick={(e)=>e.preventDefault()} isActive={activeLink === "page"}>Pages</DropDownNavItem>
+          <DropDownList>
+            <DropDownItem to="/features">Features</DropDownItem>
+            <DropDownItem to="/appointment">Appointment</DropDownItem>
+            <DropDownItem to="/team">Team Members</DropDownItem>
+            <DropDownItem to="/testimonial">Testimonial</DropDownItem>
+            <DropDownItem to="/404">404 Page</DropDownItem>
+          </DropDownList>
+          </DropDown>
+          <NavItem to="contact" isActive={activeLink === "/contact"}>Contact Us</NavItem>
         </Nav>
-        <BottonRightButton>Get A Quote</BottonRightButton>
+        <QuoteButton>Get A Quote</QuoteButton>
       </Bottom>
     </Container>
   )
