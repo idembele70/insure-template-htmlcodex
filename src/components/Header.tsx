@@ -55,7 +55,7 @@ const Bottom = styled.div`
     paddingRight: "24px",
     flexWrap:"wrap",
   })}
-`;
+`; 
 const LogoContainer = styled(Link)`
 display: inline-flex;
 align-items: center;
@@ -79,7 +79,7 @@ ${({ expanded }) =>Tablet({
   flexBasis: "100%",
   flexGrow: 1,
   transition: "max-height 350ms ease",
-  maxHeight:  expanded ? 280 : 0 ,
+  maxHeight:  expanded ? 500 : 0 ,
   overflow: "hidden",
 })}
   `;
@@ -119,14 +119,14 @@ const DropDown = styled.div`
       visibility: visible;
       opacity:1;
       transform: translateY(-32px);
+      // Reset to initial state
+  ${Tablet({
+      transform: "translateY(0)",
+  })} 
     }
   }
   ${Tablet({
     padding: "8px 0",
-    ["&:hover"]:{
-     transform: "translateY(0)"
-
-   }
   })} 
 `;
 const DropDownNavItem = styled(NavItem)`
@@ -140,8 +140,10 @@ const DropDownNavItem = styled(NavItem)`
     margin-left:8px;
   }
 `;
-
-const DropDownList = styled.div`
+interface DropDownListProps {
+  expand:boolean
+}
+const DropDownList = styled.div<DropDownListProps>`
   position:absolute;
   padding: 8px 0px;
   display:flex;
@@ -154,6 +156,14 @@ const DropDownList = styled.div`
   opacity:0;
   transform: translateY(0);
   transition: all 500ms ease 0s;
+  ${
+   ({expand})=> Tablet({
+      position:"static",
+      visibility:"visible",
+      opacity: 1,
+      display: expand ? "flex" : "none"
+    })
+  }
   `;
 const DropDownItem = styled(NavLink)`
 width: 160px;
@@ -228,6 +238,7 @@ React.useEffect(() => {
     setActiveLink(pathname)
    }, [pathname])
    const [showNavbar, setShowNavbar] = React.useState(false);
+   const [showDropDownList, setShowDropDownList] = React.useState(false);
   return (
     <Container>
       <Top>
@@ -261,14 +272,14 @@ React.useEffect(() => {
         <Bars onClick={()=>setShowNavbar(!showNavbar)}>
           <FontAwesomeIcon icon={faBars} size="2x" />
         </Bars>
-        <NavContainer expanded={showNavbar || !isDesktop}>
+        <NavContainer expanded={showNavbar}>
         <Nav>
           <NavItem to="/" isActive={activeLink === "/"} >Home</NavItem>
           <NavItem to="/about" isActive={activeLink === "/about"} >About Us</NavItem>
           <NavItem to="/service" isActive={activeLink === "/service"} >Our Services</NavItem>
-          <DropDown>
+          <DropDown onClick={()=> !isDesktop && setShowDropDownList(!showDropDownList) }>
           <DropDownNavItem to="" onClick={(e)=>e.preventDefault()} isActive={activeLink === "page"}>Pages</DropDownNavItem>
-          <DropDownList>
+          <DropDownList expand={showDropDownList}>
             <DropDownItem to="/features">Features</DropDownItem>
             <DropDownItem to="/appointment">Appointment</DropDownItem>
             <DropDownItem to="/team">Team Members</DropDownItem>
