@@ -74,17 +74,23 @@ const Logo = styled.img`
 interface NavProps {
   expanded: boolean
 }
-const Nav = styled.nav<NavProps>`
+const NavContainer = styled.div<NavProps>`
+${({ expanded }) =>Tablet({
+  flexBasis: "100%",
+  flexGrow: 1,
+  transition: "max-height 350ms ease",
+  maxHeight:  expanded ? 280 : 0 ,
+  overflow: "hidden",
+})}
+  `;
+const Nav = styled.nav`
   display: flex;
   gap: 24px;
   background-color: #F6F7FC;
   border-radius: 10px;
   padding: 8px 16px;
-  ${({expanded})=> Tablet({
-    display: expanded ? "flex" : "none",
+  ${Tablet({
     flexDirection: "column",
-    flexBasis:"100%",
-    flexGrow:1,
     gap:0,
     marginTop:24,
     paddingTop:24,
@@ -116,8 +122,12 @@ const DropDown = styled.div`
     }
   }
   ${Tablet({
-    padding: "8px 0"
-  })}
+    padding: "8px 0",
+    ["&:hover"]:{
+     transform: "translateY(0)"
+
+   }
+  })} 
 `;
 const DropDownNavItem = styled(NavItem)`
   ::after{
@@ -193,6 +203,20 @@ ${Tablet({display:"initial"})}
 const Header = () => {
   const [activeLink, setActiveLink] = React.useState("home");
    const {pathname} = useLocation()
+   const [isDesktop, setIsDesktop] = React.useState(false);
+React.useEffect(() => {
+  const handleWindowSizeChange = () => {   
+    if(window.innerWidth >= 992) // 992 is the Tablet breakpoint on the CSS
+    setIsDesktop(true)
+    else
+    setIsDesktop(false)
+   }
+   window.addEventListener("resize",handleWindowSizeChange)
+   return ()=>{
+     window.removeEventListener("resize",handleWindowSizeChange)
+    }
+  }, [])
+
    React.useEffect(() => {
     if(["/features",
     "/appointment",
@@ -237,7 +261,8 @@ const Header = () => {
         <Bars onClick={()=>setShowNavbar(!showNavbar)}>
           <FontAwesomeIcon icon={faBars} size="2x" />
         </Bars>
-        <Nav expanded={showNavbar}>
+        <NavContainer expanded={showNavbar || !isDesktop}>
+        <Nav>
           <NavItem to="/" isActive={activeLink === "/"} >Home</NavItem>
           <NavItem to="/about" isActive={activeLink === "/about"} >About Us</NavItem>
           <NavItem to="/service" isActive={activeLink === "/service"} >Our Services</NavItem>
@@ -253,6 +278,7 @@ const Header = () => {
           </DropDown>
           <NavItem to="contact" isActive={activeLink === "/contact"}>Contact Us</NavItem>
         </Nav>
+        </NavContainer>
         <QuoteButton>Get A Quote</QuoteButton>
       </Bottom>
     </Container>
