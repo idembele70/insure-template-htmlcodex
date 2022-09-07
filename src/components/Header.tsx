@@ -6,8 +6,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { Tablet } from '../tools/responsive';
 
-const Container = styled.div`
-`;
+const Container = styled.div``;
 const Top = styled.div`
 display: inline-flex;
 padding: 8px 48px;
@@ -197,7 +196,7 @@ const QuoteButton = styled.a`
 `;
 
 const Bars = styled.button`
-display:none;
+ display:none;
 ${Tablet({display:"initial"})}
   border: 1px solid #E5E5E5;
   background-color: transparent;
@@ -207,7 +206,7 @@ ${Tablet({display:"initial"})}
   border-radius: 10px;
   transition: all 150ms ease-in-out;
   &:focus {
-    box-shadow: 0 0 0 4px ;
+    box-shadow: 0 0 0 4px;
   }
 `;
 const Header = () => {
