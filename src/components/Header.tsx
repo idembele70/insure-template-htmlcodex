@@ -1,11 +1,11 @@
-import { faFacebookF, faInstagram, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons';
-import { faBars, faClock, faEnvelopeOpen, faPhone } from '@fortawesome/free-solid-svg-icons';
+ import { faFacebookF, faInstagram, faLinkedinIn, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { faBars, faPhone } from '@fortawesome/free-solid-svg-icons';
+import {  faEnvelopeOpen,faClock } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { Tablet } from '../tools/responsive';
-
 const Container = styled.div``;
 const Top = styled.div`
 display: inline-flex;
@@ -65,6 +65,14 @@ text-decoration: none;
 const Title = styled.h1`
   color: #15233C;
   font-weight: 500;
+  font-size:2.5rem;
+  font-weight:600;
+  font-family:"Poppins", sans-serif ;
+  ${
+    Tablet({
+      fontSize: "calc(1.375rem + 1.5vw)"
+    })
+  }
 `;
 const Logo = styled.img`
   height: 60px;
@@ -238,6 +246,7 @@ React.useEffect(() => {
    }, [pathname])
    const [showNavbar, setShowNavbar] = React.useState(false);
    const [showDropDownList, setShowDropDownList] = React.useState(false);
+
   return (
     <Container>
       <Top>
@@ -252,15 +261,15 @@ React.useEffect(() => {
           </TopLeftRow>
           <TopLeftRow>
             <FontAwesomeIcon icon={faClock} size="sm"/>
-            <TopLeftRowText>Mon - Fri: 09 AM - 09 PM
+            <TopLeftRowText>Mon - Fri : 09 AM - 09 PM
             </TopLeftRowText>
           </TopLeftRow>
         </TopLeft>
         <TopRight>
-          <TopRightIcon icon={faFacebookF}/> 
-          <TopRightIcon icon={faTwitter}/> 
-          <TopRightIcon icon={faLinkedin}/> 
-          <TopRightIcon icon={faInstagram}/> 
+          <TopRightIcon icon={faFacebookF}/>
+          <TopRightIcon icon={faTwitter}/>
+          <TopRightIcon icon={faLinkedinIn}/>
+          <TopRightIcon icon={faInstagram}/>
         </TopRight>
       </Top>
       <Bottom>
