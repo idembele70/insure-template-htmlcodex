@@ -123,7 +123,7 @@ background-color:transparent;
   }
 }
 `;
-const Button = styled.span`
+export const Button = styled.span`
   border-radius: 50%;
   background-color: rgba(25, 107, 195, 0.579);
   height:50px;
