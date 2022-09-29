@@ -23,7 +23,7 @@ margin-top:48px;
 min-width:475px;
 min-height:400px;
 ${Tablet({maxWidth:744})}
-${XSmall({minWidth:"90vw"})}
+${XSmall({minWidth:"90%"})}
 `;
 const Left = styled(Row)`
   position:relative;

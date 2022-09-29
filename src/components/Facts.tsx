@@ -8,7 +8,8 @@ const Container = styled.div`
   height:490px;
   ${Tablet({
     flexDirection:"column",
-    width:"90%"
+    width:"90%",
+    height:"auto"
   })}
 `;
 const Col = styled.div`
@@ -37,7 +38,6 @@ const LeftTitle = styled.h1`
   ${XSmall({
     fontSize:"1.625rem"
   })}
-
     `;
     const Paragraph = styled.p`
       font-size:1rem;
