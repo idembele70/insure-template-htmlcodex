@@ -5,7 +5,6 @@ const Container = styled.div`
   padding:48px 0px;
   width:100%;
   max-width:1320px;
-  max-height: 672px;
   margin: 0 auto;
   display:flex;
   flex-wrap:wrap;
@@ -96,6 +95,7 @@ const Right = styled(Col)`
 margin-top:48px;
 `;
 const RightImage = styled.img`
+border-radius: 10px;
   height:100%;
   width:100%;
   object-fit:cover;

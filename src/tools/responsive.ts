@@ -22,7 +22,7 @@ export const Small = (props: CSSObject) => css`
   }
 `;
 export const XSmall = (props: CSSObject) => css`
-  @media only screen and (max-width: 568px) {
+  @media only screen and (max-width: 576px) {
     ${props}
   }
 `;
