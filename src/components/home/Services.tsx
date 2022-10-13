@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Tablet,Small } from '../tools/responsive';
+import { Tablet,Small } from '../../tools/responsive';
 const Container = styled.div`
   max-width:1320px;
   width:95%;

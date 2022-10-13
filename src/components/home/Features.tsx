@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
-import { Tablet, MediumDesktop,XSmall } from '../tools/responsive';
+import { Tablet, MediumDesktop,XSmall } from '../../tools/responsive';
 const Container = styled.div`
   padding:48px 0px;
   width:100%;

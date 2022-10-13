@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Small, SmallDesktop, Tablet, XSmall } from '../tools/responsive';
+import { Small, SmallDesktop, Tablet, XSmall } from '../../tools/responsive';
 const Container = styled.div`
   width:100%;
   padding:48px 12px;

@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Slider, { Settings} from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
-import { Small, MediumDesktop, SmallDesktop, Tablet } from '../tools/responsive';
+import { Small, MediumDesktop, SmallDesktop, Tablet } from '../../tools/responsive';
 import { Link } from 'react-router-dom';
 const Container = styled.div`
 position:relative;

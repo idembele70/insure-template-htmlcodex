@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { MediumDesktop, Small, Tablet, XSmall } from '../tools/responsive';
+import { MediumDesktop, Small, Tablet, XSmall } from '../../tools/responsive';
 const Container = styled.div`
   margin: 48px auto;
   width:100%;

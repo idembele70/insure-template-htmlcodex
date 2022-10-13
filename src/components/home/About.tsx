@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
-import { Tablet, XSmall } from '../tools/responsive';
+import { Tablet, XSmall } from '../../tools/responsive';
 const Container = styled.div`
   width:100%;
   max-width:1320px;
