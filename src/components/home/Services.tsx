@@ -9,11 +9,7 @@ const Container = styled.div`
   padding: 48px 12px;
 `;
 const Title = styled.h1`
-  color:#15233C;
-  font-size:2.5rem;
-  font-family: "Poppins", sans-serif;
   font-weight: 700;
-  line-height: 1.2;
   max-width:500px;
   margin:0 auto 48px;
   text-align: center;
@@ -78,11 +74,8 @@ const ServiceTitle = styled.h4`
 `;
 const ServiceDescription = styled.p`
   font-size:1rem;
-  font-family: "Roboto", "sans-serif";
   margin-bottom: 24px;
   color:#696E77;
-  font-weight: 400;
-  line-height: 1.5;
 `;
 const Button = styled(Link)`
   font-size: 1rem;

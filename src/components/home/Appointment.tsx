@@ -42,10 +42,7 @@ flex-direction:column;
 `;
 const LeftTitle = styled.h1`
   color:#FFF;
-  font-size:2.5rem;
-  font-family:"Poppins", "sans-serif";
   font-weight: 700;
-  line-height:1.2;
   margin-bottom:48px;
   ${SmallDesktop({
     FontSize:"calc(1.375rem + 1.5vw)"
@@ -53,10 +50,7 @@ const LeftTitle = styled.h1`
 `;
 const LeftDescription = styled.p`
   color:#FFF;
-  font-size:16px;
-  font-family:"Roboto", "sans-serif";
-  font-weight:400;
-  line-height:1.5;
+  font-size:1rem;
   margin-bottom:48px;
 `;
 const ContactContainer = styled.div`
@@ -81,9 +75,6 @@ const Image = styled.img`
 `;
 const ContactInfo = styled.h5`
   color:#FFF;
-  font-size:1.25rem;
-  font-family:"Poppins", "sans-serif";
-  font-weight: 600;
   line-height: 1.2;
 `;
 const Right = styled(Col)`

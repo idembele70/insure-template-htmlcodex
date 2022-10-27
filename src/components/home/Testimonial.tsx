@@ -18,12 +18,8 @@ max-width:1320px;
   margin:0 auto;
 `;
 const Title = styled.h1`
-  font-size:2.5rem;
   max-width:500px;
-  font-family: "Poppins", "sans-serif";
   font-weight: 700;
-  line-height:1.2;
-  color: #15233C;
   margin:0 auto 48px;
   text-align:center;
   ${Tablet({
@@ -100,13 +96,11 @@ const Center = styled.div`
   const Description = styled.p`
     color:#696E77;
     font-size:1.25rem;
-    font-family: "Roboto", "sans-serif";
     margin: 0 0 16px;
     text-align: center;
   `;
   const Name = styled.h5`
     color:#15233C;
-    font-size:1.25rem;
     font-family: "Poppins", "sans-serif";
     margin-bottom: 8px;
     text-align: center;

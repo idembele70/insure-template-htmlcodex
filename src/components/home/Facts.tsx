@@ -27,11 +27,7 @@ const Left = styled(Col)`
     `;
 const LeftTitle = styled.h1`
       color:#FFFFFF;
-      font-size:2.5rem;
       margin-bottom: 24px;
-      font-weight: 600;
-      line-height:1.2;
-  font-family: "Poppins","sans-serif";
   ${Small({
     fontSize:"2rem"
   })}
@@ -39,13 +35,10 @@ const LeftTitle = styled.h1`
     fontSize:"1.625rem"
   })}
     `;
-    const Paragraph = styled.p`
-      font-size:1rem;
-      margin-bottom:48px;
-      color:#F6F7FC;
-  font-family: "Roboto","sans-serif";
-  font-weight:400;
-  line-height: 1.5;
+const Paragraph = styled.p`
+  font-size:1rem;
+  margin-bottom:48px;
+  color:#F6F7FC;
     `;
 const Right = styled(Col)`
 padding: 96px 20% 96px 24px;
@@ -68,11 +61,8 @@ const RightCol = styled.div`
   })}
 `;
 const RightColTitle = styled.h1`
-  color: #15233c;
   font-size:3rem;
-  font-family: "Poppins", "sans-serif";
   margin-bottom:8px;
-  line-height:1.2;
   font-weight:700;
   ${Tablet({
     fontSize:"calc(1.425rem + 2.1vw)"
@@ -80,8 +70,6 @@ const RightColTitle = styled.h1`
 `;
 const RightColParagragh = styled.h5`
   color:#015FC9;
-  font-size:1.25rem;
-  font-family: "Roboto", "sans-serif";
   margin-bottom:16px;
   font-weight:400;
 `;

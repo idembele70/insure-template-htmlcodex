@@ -36,11 +36,7 @@ const Left = styled(Col)`
   flex-direction:column;
 `;
 const LeftTitle = styled.h1`
-  font-size:2.5rem;
   margin-bottom:48px;
-  color:#15233C;
-  font-family: "Poppins","sans-serif";
-  line-height:1.2;
   font-weight:700;
  ${Tablet({
       fontSize: "calc(1.375rem + 1.5vw)"
@@ -48,8 +44,7 @@ const LeftTitle = styled.h1`
 `;
 const LeftParagraph = styled.p`
   color:#696E77;
-  font-size:16px;
-  font-family:"Roboto", "sans-serif";
+  font-size:1rem;
   margin-bottom:24px;
 `;
 const ReasonContainer = styled.div`
@@ -83,13 +78,12 @@ const ReasonImg = styled.img`
   width:64px;
 `;
 const ReasonTitle = styled.h5`
-  font-size:1.25rem;
   font-family:"Poppins", "sans-serif";
   color: #15233C;
-    margin-bottom:0;
-    line-height:1.5;
-    font-weight:400;
-    text-align:center;
+  margin-bottom:0;
+  line-height:1.5;
+  font-weight:400;
+  text-align:center;
 `;
 const Right = styled(Col)`
 margin-top:48px;

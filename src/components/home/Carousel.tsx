@@ -55,16 +55,9 @@ align-items: start;
   })}
 `;
 const Title = styled.h1`
-  font-size:64px;
-  line-height: 76.8px;
-  font-family: "Poppins", "sans-serif";
-  color: #15233C;
+  font-size:4rem;
   font-weight: 700;
   margin-bottom:24px;
-  ${SmallDesktop({
-    fontSize:"4rem",
-    lineHeight:1.2
-  })}
   ${Tablet({
     fontSize:"3rem"
   })}
@@ -75,9 +68,8 @@ const Title = styled.h1`
   }
 `;
 const Description = styled.p`
-  font-size:20px;
+  font-size:1.25rem;
   color: #696E77;
-  font-family: Roboto, "sans-serif";
   margin-bottom: 48px;
 `;
 const InformationDetail = styled(Link)`

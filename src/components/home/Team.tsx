@@ -10,13 +10,9 @@ const Container = styled.div`
   margin:48px 0;
 `;
 const Title = styled.h1`
-  color:#15233C;
-  font-size:2.5rem;
-  font-family: "Poppins", "sans-serif";
   max-width: 500px;
   text-align: center;
   font-weight: 700;
-  line-height:1.2;
   margin:0 auto 48px;
 `;
 const CardsContainer = styled.div`
@@ -76,18 +72,13 @@ const CardBottomHover = styled(CardBottom)`
   background-color: #FFF;
   `;
 const CardTitle = styled.h5`
-  font-size: 1.25rem;
   margin-bottom: 8px;
   font-family: "Poppins", "sans-serif";
-  font-weight: 600;
   line-height: 1.2;
   color:#15233C;
 `;
 const CardSubTitle = styled.p`
-  font-family: "Roboto", "sans-serif";
   font-size:1rem;
-  font-weight:400;
-  line-height:1.5;
   color:#696E77;
 `;
 const MediaContainer = styled.div`

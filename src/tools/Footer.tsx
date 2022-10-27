@@ -51,9 +51,6 @@ const Paragraph = styled.p`
   color: #A7A8B4;
   font-size: 1rem;
   margin-bottom:16px;
-  font-family: "Roboto", "sans-serif";
-  font-weight:400;
-  line-height:1.5;
 `;
 const SocialContainer = styled.div`
   display:flex;
@@ -82,10 +79,8 @@ const IconContainer = styled(Link)`
 `;
 const ColTitle = styled.h5`
   color: #F6F7FC;
-  font-size:1.25rem;
   font-family: "Poppins", "sans-serif";
   margin-bottom:24px;
-  font-weight:600;
   line-height:1.2;
 `;
 const AddressParagraph = styled(Paragraph)`

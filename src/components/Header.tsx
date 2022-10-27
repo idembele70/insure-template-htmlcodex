@@ -63,11 +63,6 @@ cursor: pointer;
 text-decoration: none;
 `;
 export const Title = styled.h1`
-  color: #15233C;
-  font-weight: 500;
-  font-size:2.5rem;
-  font-weight:600;
-  font-family:"Poppins", sans-serif ;
   ${
     Tablet({
       fontSize: "calc(1.375rem + 1.5vw)"

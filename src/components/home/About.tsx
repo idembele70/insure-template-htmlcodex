@@ -49,25 +49,15 @@ const LeftTopBoxChild = styled.div`
   align-items: center;
   background-color: #015FC9;
   border-radius: 10px;
-  color: #FFFFFF;
   `;
 const BoxTitle = styled.h1`
- font-size:2.5rem;
- line-height:1.2;
- margin-bottom:0;
- font-weight: 600;
- font-family:"Poppins", sans-serif;
- `;
+color: #FFFFFF;
+`;
 const BoxSubTitle = styled.h2`
-font-family:"Roboto", sans-serif;
-font-size:2rem;
-font-weight:600;
-line-height:1.5;
+color: #FFFFFF;
 `;
 const BoxText = styled.h5`
-  font-family:"Roboto", sans-serif;
-  font-size:1.25rem;
-  font-weight:600;
+color: #FFFFFF;
 `;
 const LeftImage = styled.img`
   width:80%;
@@ -83,17 +73,12 @@ const LeftImage = styled.img`
 const Right = styled(Row)`
 `;
 const Title = styled.h1`
-  color:#15233C;
-  font-size: 2.5rem;
-  font-family: "Poppins", sans-serif;
   margin-bottom: 48px;
   font-weight: 700;
-  line-height: 1.2;
 `;
 const Intro = styled.p`
 color: #015FC9;
 font-size: 1.25rem;
-font-family:"Roboto", sans-serif;
 margin-bottom:24px;
 `
 const Info = styled.div`
@@ -114,15 +99,13 @@ const InfoImg = styled.img`
 `;
 const InfoTitle = styled.h5`
   color:#15233C;
-  font-size:1.25rem;
   font-family:"Poppins", sans-serif;
   margin-bottom: 0;
   line-height: 1.2;
-  font-weight: 600;
   max-width:175px;
   `
   const Description = styled.p`
-    font: 16px "Roboto", sans-serif;
+    font-size: 1rem;
     margin-bottom:24px;
   `;
   const Hr = styled.hr`
