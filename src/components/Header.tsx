@@ -55,14 +55,14 @@ const Bottom = styled.div`
     flexWrap:"wrap",
   })}
 `; 
-const LogoContainer = styled(Link)`
+export const LogoContainer = styled(Link)`
 display: inline-flex;
 align-items: center;
 gap: 16px;
 cursor: pointer;
 text-decoration: none;
 `;
-const Title = styled.h1`
+export const Title = styled.h1`
   color: #15233C;
   font-weight: 500;
   font-size:2.5rem;
@@ -74,7 +74,7 @@ const Title = styled.h1`
     })
   }
 `;
-const Logo = styled.img`
+export const Logo = styled.img`
   height: 60px;
   ${Tablet({height:45})}
 `;
@@ -105,10 +105,10 @@ const Nav = styled.nav`
   })}
 `;
 interface NavItemProps {
-  isActive?: boolean
+  isactive?: boolean
 }
 const NavItem = styled(NavLink)<NavItemProps>`
-  color:#${({ isActive }) => isActive ? "275FC9": "696E77"};
+  color:#${({ isactive }) => isactive ? "275FC9": "696E77"};
   transition: 350ms color ease-in;
   cursor: pointer;
   text-decoration: none;
@@ -275,18 +275,18 @@ React.useEffect(() => {
       <Bottom>
         <LogoContainer to="/">
       <Logo src={`${process.env.PUBLIC_URL}/assets/icon/icon-02-primary.png`}/>
-        <Title>Insure </Title>
+        <Title>Insure</Title>
         </LogoContainer>
         <Bars onClick={()=>setShowNavbar(!showNavbar)}>
           <FontAwesomeIcon icon={faBars} size="2x" />
         </Bars>
         <NavContainer expanded={showNavbar}>
         <Nav>
-          <NavItem to="/" isActive={activeLink === "/"} >Home</NavItem>
-          <NavItem to="/about" isActive={activeLink === "/about"} >About Us</NavItem>
-          <NavItem to="/service" isActive={activeLink === "/service"} >Our Services</NavItem>
+          <NavItem to="/" isactive={activeLink === "/"} >Home</NavItem>
+          <NavItem to="/about" isactive={activeLink === "/about"} >About Us</NavItem>
+          <NavItem to="/service" isactive={activeLink === "/service"} >Our Services</NavItem>
           <DropDown onClick={()=> !isDesktop && setShowDropDownList(!showDropDownList) }>
-          <DropDownNavItem to="" onClick={(e)=>e.preventDefault()} isActive={activeLink === "page"}>Pages</DropDownNavItem>
+          <DropDownNavItem to="" onClick={(e)=>e.preventDefault()} isactive={activeLink === "page"}>Pages</DropDownNavItem>
           <DropDownList expand={showDropDownList}>
             <DropDownItem to="/features">Features</DropDownItem>
             <DropDownItem to="/appointment">Appointment</DropDownItem>
@@ -295,7 +295,7 @@ React.useEffect(() => {
             <DropDownItem to="/404">404 Page</DropDownItem>
           </DropDownList>
           </DropDown>
-          <NavItem to="contact" isActive={activeLink === "/contact"}>Contact Us</NavItem>
+          <NavItem to="contact" isactive={activeLink === "/contact"}>Contact Us</NavItem>
         </Nav>
         </NavContainer>
         <QuoteButton>Get A Quote</QuoteButton>

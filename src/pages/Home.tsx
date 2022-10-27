@@ -7,6 +7,7 @@ import Features from '../components/home/Features'
 import Services from '../components/home/Services'
 import Team from '../components/home/Team'
 import Testimonial from '../components/home/Testimonial'
+import Footer from '../tools/Footer'
 
 const Home = () => {
   return (
@@ -19,6 +20,7 @@ const Home = () => {
     <Appointment/>
     <Team/>
     <Testimonial/>
+    <Footer/>
     </>
   )
 }
