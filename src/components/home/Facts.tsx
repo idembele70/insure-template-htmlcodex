@@ -13,14 +13,14 @@ const Container = styled.div`
   })}
 `;
 const Col = styled.div`
-  flex:1;
+  width:50%;
   `;
 const Left = styled(Col)`
   background: linear-gradient(rgba(1, 95, 201, .9), rgba(1, 95, 201, .9)), url(
     ${process.env.PUBLIC_URL}/assets/slider/carousel-1.jpg
   );
   background-size: cover;
-    padding: 96px 24px 96px 20%;
+    padding: 96px 24px 96px 7%;
     ${MediumDesktop({
       paddingLeft: "10%"
     })}
@@ -41,11 +41,12 @@ const Paragraph = styled.p`
   color:#F6F7FC;
     `;
 const Right = styled(Col)`
-padding: 96px 20% 96px 24px;
+padding: 96px 7% 96px 24px;
   background: linear-gradient(rgba(255, 255, 255, .9),rgba(255, 255, 255, .9)), url(
     ${process.env.PUBLIC_URL}/assets/slider/carousel-2.jpg
   );
   background-size: cover;
+  background-position: right;
  display:flex;
  flex-wrap:wrap;
  ${MediumDesktop({

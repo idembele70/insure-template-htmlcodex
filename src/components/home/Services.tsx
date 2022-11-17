@@ -32,6 +32,7 @@ const Service = styled.div`
  background-color: #FFF;
   position:relative;
   box-shadow: 0 0 45px rgb(0 0 0 / 7%);
+  border-radius:10px;
   ${Tablet({
     width: "calc(100% / 2 - 24px)"
   })}

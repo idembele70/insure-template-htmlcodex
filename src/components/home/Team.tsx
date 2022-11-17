@@ -6,8 +6,9 @@ import styled from 'styled-components';
 import { Tablet, XSmall } from '../../tools/responsive';
 const Container = styled.div`
   width:100%;
+  max-width: 1320px;
+  margin: 0 auto;
   padding:48px 12px;
-  margin:48px 0;
 `;
 const Title = styled.h1`
   max-width: 500px;
@@ -20,11 +21,12 @@ const CardsContainer = styled.div`
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap:16px;
+  gap:24px;
 `;
 const Card = styled.div`
   max-width:324px;
-  width:calc(100% / 4 - 16px);// 16px refer to the parent gap
+  width:calc(100% / 4 - 24px);// 24px refer to the parent gap
+  box-shadow: 0 0 45px rgba(0,0,0,0.07);
   border-radius:10px;
   overflow:hidden;
   position:relative;
@@ -83,6 +85,7 @@ const CardSubTitle = styled.p`
 `;
 const MediaContainer = styled.div`
   display:flex;
+  justify-content: center;
   gap:8px;
   flex-wrap:wrap;
 `;
@@ -100,7 +103,16 @@ const Media = styled(Link)`
   &:hover {
     color:#FFF;
     background-color:#015FC9;
+    & path {
+      color: #FFF;
+    }
+
 }
+`;
+const MediaIcon = styled(FontAwesomeIcon)`
+  & path {
+    color: #015FC9;
+  }
 `;
 const Team = () => {
   interface Members {
@@ -136,8 +148,8 @@ const BaseUrl = `${process.env.PUBLIC_URL}/assets/team/team-`
       <Title>Meet Our Professional Team Members</Title>
       <CardsContainer>
         {members.map(
-          member=>
-          <Card>
+          (member,idx)=>
+          <Card key={idx}>
             <CardImage src={`${BaseUrl}${member.img}.jpg`}/>
             <CardBottom>
               <CardTitle>{member.name}</CardTitle>
@@ -148,16 +160,16 @@ const BaseUrl = `${process.env.PUBLIC_URL}/assets/team/team-`
               <CardSubTitle>{member.designation}</CardSubTitle>
               <MediaContainer>
                 <Media to="/">
-                  <FontAwesomeIcon icon={faTwitter}/>
+                  <MediaIcon icon={faTwitter}/>
                 </Media>
                 <Media to="/">
-                  <FontAwesomeIcon icon={faFacebookF}/>
+                  <MediaIcon icon={faFacebookF}/>
                 </Media>
                 <Media to="/">
-                  <FontAwesomeIcon icon={faYoutube}/>
+                  <MediaIcon icon={faYoutube}/>
                 </Media>
                 <Media to="/">
-                  <FontAwesomeIcon icon={faLinkedinIn}/>
+                  <MediaIcon icon={faLinkedinIn}/>
                 </Media>
               </MediaContainer>
             </CardBottomHover>

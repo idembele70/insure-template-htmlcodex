@@ -15,14 +15,13 @@ const Row = styled.div`
   width:95%;
   max-width:1320px;
   margin:0 auto;
-  padding: 48px 12px;
+  padding: 48px 0;
   display: flex;
   flex-wrap:wrap;
   justify-content:center;
   `;
 const Col = styled.div`
   min-width: 448px;
-  margin-top: 48px;
   padding: 0 24px;
   width:50%;
   ${Tablet({
@@ -78,9 +77,6 @@ const ContactInfo = styled.h5`
   line-height: 1.2;
 `;
 const Right = styled(Col)`
-  background-color: #FFF;
-  border-radius:10px;
-  padding:48px;
   ${
     XSmall({
       padding:"24px"
@@ -88,10 +84,12 @@ const Right = styled(Col)`
   }
 `;
 const Form = styled.form`
+border-radius:10px;
+  padding:48px;
+  background-color: #FFF;
 `;
 const FormRow = styled.div`
 display: flex;
-justify-content: space-between;
   margin-bottom: 24px;
   ${XSmall({
     marginBottom:0,
@@ -101,6 +99,7 @@ justify-content: space-between;
 const Input = styled.input`
   width:calc(50% - 16px);
   padding: 16px 12px;
+  margin: 0 8px;
   border:1px solid #ced4da;
   font-size: 1rem;
   font-weight:400;

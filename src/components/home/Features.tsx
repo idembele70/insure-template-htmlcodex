@@ -24,6 +24,7 @@ const Container = styled.div`
 const Col = styled.div`
   flex: 0 0 auto;
   width:50%;
+  margin-top:48px;
   padding: 0 24px;
   max-height:100%;
   ${Tablet({
@@ -48,7 +49,7 @@ const LeftParagraph = styled.p`
   margin-bottom:24px;
 `;
 const ReasonContainer = styled.div`
-flex-grow:1;
+  flex-grow:1;
   height:auto;
   display:flex;
   flex-wrap:wrap;
@@ -62,6 +63,7 @@ const ReasonBox = styled.div`
   ${XSmall({
     width: "100%"
   })}
+  border-radius:10px;
   `;
 const Reason  = styled.div`
   background-color: #FFFFFF;
@@ -69,8 +71,8 @@ const Reason  = styled.div`
   flex-direction:column;
   align-items:center;
   padding:22px 16px;
-  ${XSmall({
-  })}
+  width:100%;
+  border-radius:10px;
 `;
 const ReasonImg = styled.img`
   margin-bottom:16px;
@@ -86,10 +88,9 @@ const ReasonTitle = styled.h5`
   text-align:center;
 `;
 const Right = styled(Col)`
-margin-top:48px;
 `;
 const RightImage = styled.img`
-border-radius: 10px;
+  border-radius: 10px;
   height:100%;
   width:100%;
   object-fit:cover;

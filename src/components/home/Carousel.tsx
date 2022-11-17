@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Slider, { Settings} from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
-import { Small, MediumDesktop, SmallDesktop, Tablet } from '../../tools/responsive';
+import { Small, MediumDesktop, SmallDesktop, Tablet, XSmall } from '../../tools/responsive';
 import { Link } from 'react-router-dom';
 const Container = styled.div`
 position:relative;
@@ -28,19 +28,23 @@ const InformationContainer = styled.div`
   display: flex;
   align-items: center;
 `;
-const InformationWrapper = styled.div`
-width:90vw;
+export const PageRow = styled.div`
+width: 100%;
 max-width: 1320px;
-margin-left: auto;
-margin-right: auto;
+margin: 0 auto;
 ${MediumDesktop({
-  width:"75vw",
+  maxWidth:1140,
+})}
+${SmallDesktop({
+  maxWidth:960,
 })}
 ${Tablet({
-  width:"90vw",
+  maxWidth:720,
 })}
-
-`;
+${Small({
+  maxWidth:540,
+})}
+`
 const Information = styled.div`
 display:flex;
 flex-direction: column;
@@ -132,6 +136,11 @@ const RightButton = styled(ButtonContainer)`
 const LeftButton = styled(ButtonContainer)`
   left: 0px;
   `;
+  const ButtonIcon = styled(FontAwesomeIcon)`
+    & path {
+      color: rgba(255,255,255,0.5);
+    }
+  `;
 
 const Carousel = () => {
   interface Images {
@@ -153,7 +162,7 @@ const Carousel = () => {
   const settings : Settings  = {
     slidesToShow:1,
     slidesToScroll:1,
-    autoplay:false,
+    autoplay:false, // Should be put to True
     autoplaySpeed:3000,
     arrows:false,
     dots:false
@@ -164,17 +173,17 @@ const Carousel = () => {
       <Slider ref={slideRef}  {...settings} >
         {
           imagesLink.map(
-            info=>
-            <Slide>
+            (info,idx)=>
+            <Slide key={idx}>
               <Image src={`${process.env.PUBLIC_URL}/assets/slider/carousel-${info.img}.jpg`}/>
               <InformationContainer>
-                <InformationWrapper>
+                <PageRow>
                 <Information>
                 <Title>{info.title}</Title>
                 <Description>{info.description}</Description>
                 <InformationDetail to="/">More Details</InformationDetail>
                 </Information>
-                </InformationWrapper>
+                </PageRow>
               </InformationContainer>
             </Slide>
           )
@@ -182,12 +191,12 @@ const Carousel = () => {
       </Slider>
       <LeftButton onClick={()=>slideRef.current?.slickPrev()}>
         <Button>
-        <FontAwesomeIcon icon={faAngleLeft} size="lg"/>
+        <ButtonIcon icon={faAngleLeft} size="lg"/>
         </Button>
       </LeftButton>
       <RightButton onClick={()=>slideRef.current?.slickNext()}>
         <Button>
-      <FontAwesomeIcon icon={faAngleRight} size="lg"/>
+      <ButtonIcon icon={faAngleRight} size="lg"/>
         </Button>
       </RightButton>
     </Container>

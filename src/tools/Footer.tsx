@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Logo, LogoContainer, Title } from '../components/Header';
+import { Logo, LogoContainer, Title } from './Header';
 import { Button } from '../components/home/Carousel';
 import { Small, Tablet } from './responsive';
 const Container = styled.div`

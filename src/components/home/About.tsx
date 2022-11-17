@@ -1,14 +1,11 @@
 import React from 'react'
 import styled from 'styled-components';
 import { Tablet, XSmall } from '../../tools/responsive';
-const Container = styled.div`
-  width:100%;
-  max-width:1320px;
+import { PageRow } from './Carousel';
+const Container = styled(PageRow)`
   padding: 48px 12px;
   display:flex;
   flex-wrap:wrap;
-  margin-left:auto;
-  margin-right:auto;
   ${
     Tablet({
       justifyContent:"center"
@@ -108,10 +105,9 @@ const InfoTitle = styled.h5`
     font-size: 1rem;
     margin-bottom:24px;
   `;
-  const Hr = styled.hr`
-  `;
   const ContactInfoRow = styled(InfoCol)`
   padding-top:24px;
+  border-top:1px solid #DEE2E6;
   `;
   const ContactImg = styled.img`
   height:45px;
@@ -153,7 +149,6 @@ const About = () => {
 <Description>
 Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet
 </Description>
-      <Hr/>
       <ContactInfoRow>
         <ContactImg src={`${publicUrl}/about/profile.jpg`}/>
         <ContactPhone>Call Us: +012 345 6789</ContactPhone>

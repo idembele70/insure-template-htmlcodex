@@ -5,12 +5,13 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
-import { Tablet } from '../../tools/responsive';
+import { Tablet,SmallDesktop,Small,XSmall } from '../../tools/responsive';
 
 const Container = styled.div`
   width:100%;
+  max-width:1320px;
+  margin: 0 auto;
   padding:48px 12px;
-  margin:48px 0;
 `;
 const Row = styled.div`
 max-width:1320px;
@@ -195,7 +196,7 @@ const slideRef  = React.useRef<Slider>(null)
     <Center>
       <Slider ref={slideRef} {...settings}>
       {
-        slideItems.map(item=><Slide>
+        slideItems.map((item,idx)=><Slide key={idx}>
           <Image src={`${ReviewBaseUrl}${item.idx}${EndUrl}`}/>
           <Description>{item.description}</Description>
           <Name>{item.name}</Name>

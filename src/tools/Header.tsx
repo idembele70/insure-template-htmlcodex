@@ -5,8 +5,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import { Tablet } from '../tools/responsive';
-const Container = styled.div``;
+import { Tablet } from './responsive';
+const Container = styled.div`
+position:sticky;
+top:0px;
+z-index:1;
+background: #FFF;
+box-shadow:0 0.125rem 0.25rem rgba(0,0,0,0.08);
+`;
 const Top = styled.div`
 display: inline-flex;
 padding: 8px 48px;
@@ -15,6 +21,7 @@ justify-content: space-between;
   height: 40px;
   width: 100%;
   background-color: #15233C;
+  top:0;
   ${Tablet({display:"none"})}
 `;
 const TopLeft = styled.div`
@@ -30,6 +37,7 @@ const TopLeftRow = styled.div`
 `;
 const TopLeftRowText = styled.small`
   font-size: 0.875em;
+  color:rgba(255,255,255,0.5);
 `;
 
 const TopRight = styled.div`
@@ -38,9 +46,12 @@ const TopRight = styled.div`
   align-items: center;
   gap: 24px;
 `;
-const TopRightIcon = styled(FontAwesomeIcon)`
-  color: rgba(255, 255, 255, 0.502);
+const TopIcon = styled(FontAwesomeIcon)`
   cursor:pointer;
+  & path {
+    color: rgba(255, 255, 255, 0.502);
+
+  }
 `
 const Bottom = styled.div`
   padding: 8px 48px;
@@ -100,10 +111,10 @@ const Nav = styled.nav`
   })}
 `;
 interface NavItemProps {
-  isactive?: boolean
+  color: string
 }
 const NavItem = styled(NavLink)<NavItemProps>`
-  color:#${({ isactive }) => isactive ? "275FC9": "696E77"};
+  color:#${({ color }) => color };
   transition: 350ms color ease-in;
   cursor: pointer;
   text-decoration: none;
@@ -216,7 +227,7 @@ const Header = () => {
   const [activeLink, setActiveLink] = React.useState("home");
    const {pathname} = useLocation()
    const [isDesktop, setIsDesktop] = React.useState(false);
-React.useEffect(() => {
+    React.useEffect(() => {
   const handleWindowSizeChange = () => {   
     if(window.innerWidth >= 992) // 992 is the Tablet breakpoint on the CSS
     setIsDesktop(true)
@@ -241,30 +252,42 @@ React.useEffect(() => {
    }, [pathname])
    const [showNavbar, setShowNavbar] = React.useState(false);
    const [showDropDownList, setShowDropDownList] = React.useState(false);
-
+   
+   const [isSticky, setIsSticky] = React.useState(false);
+   React.useEffect(()=>{
+    const handleScroll = ()=> {
+      if(window.scrollY > 300)
+      setIsSticky(true)
+      else
+      setIsSticky(false)
+    }
+    window.addEventListener("scroll", handleScroll)
+    return ()=> window.removeEventListener("scroll", handleScroll)
+   })
+   const handleColor = (link:string) => activeLink === link ? "275FC9": "696E77"
   return (
     <Container>
       <Top>
         <TopLeft>
           <TopLeftRow>
-            <FontAwesomeIcon icon={faPhone} size="sm"  />
+            <TopIcon icon={faPhone} size="sm"  />
             <TopLeftRowText>+012 345 6789</TopLeftRowText>
           </TopLeftRow>
           <TopLeftRow>
-            <FontAwesomeIcon icon={faEnvelopeOpen} size="sm" />
+            <TopIcon icon={faEnvelopeOpen} size="sm" />
             <TopLeftRowText>info@example.com</TopLeftRowText>
           </TopLeftRow>
           <TopLeftRow>
-            <FontAwesomeIcon icon={faClock} size="sm"/>
+            <TopIcon icon={faClock} size="sm"/>
             <TopLeftRowText>Mon - Fri : 09 AM - 09 PM
             </TopLeftRowText>
           </TopLeftRow>
         </TopLeft>
         <TopRight>
-          <TopRightIcon icon={faFacebookF}/>
-          <TopRightIcon icon={faTwitter}/>
-          <TopRightIcon icon={faLinkedinIn}/>
-          <TopRightIcon icon={faInstagram}/>
+          <TopIcon icon={faFacebookF}/>
+          <TopIcon icon={faTwitter}/>
+          <TopIcon icon={faLinkedinIn}/>
+          <TopIcon icon={faInstagram}/>
         </TopRight>
       </Top>
       <Bottom>
@@ -277,11 +300,11 @@ React.useEffect(() => {
         </Bars>
         <NavContainer expanded={showNavbar}>
         <Nav>
-          <NavItem to="/" isactive={activeLink === "/"} >Home</NavItem>
-          <NavItem to="/about" isactive={activeLink === "/about"} >About Us</NavItem>
-          <NavItem to="/service" isactive={activeLink === "/service"} >Our Services</NavItem>
+          <NavItem to="/" color={handleColor("/")} >Home</NavItem>
+          <NavItem to="/about" color={handleColor("/about")} >About Us</NavItem>
+          <NavItem to="/service" color={handleColor("/service")} >Our Services</NavItem>
           <DropDown onClick={()=> !isDesktop && setShowDropDownList(!showDropDownList) }>
-          <DropDownNavItem to="" onClick={(e)=>e.preventDefault()} isactive={activeLink === "page"}>Pages</DropDownNavItem>
+          <DropDownNavItem to="" onClick={(e)=>e.preventDefault()} color={handleColor("/page")}>Pages</DropDownNavItem>
           <DropDownList expand={showDropDownList}>
             <DropDownItem to="/features">Features</DropDownItem>
             <DropDownItem to="/appointment">Appointment</DropDownItem>
@@ -290,7 +313,7 @@ React.useEffect(() => {
             <DropDownItem to="/404">404 Page</DropDownItem>
           </DropDownList>
           </DropDown>
-          <NavItem to="contact" isactive={activeLink === "/contact"}>Contact Us</NavItem>
+          <NavItem to="contact" color={handleColor("/contact")}>Contact Us</NavItem>
         </Nav>
         </NavContainer>
         <QuoteButton>Get A Quote</QuoteButton>
