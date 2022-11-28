@@ -1,18 +1,12 @@
  import { faFacebookF, faInstagram, faLinkedinIn, faTwitter } from '@fortawesome/free-brands-svg-icons';
-import { faBars, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faArrowUp, faBars, faPhone } from '@fortawesome/free-solid-svg-icons';
 import {  faEnvelopeOpen,faClock } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { Tablet } from './responsive';
-const Container = styled.div`
-position:sticky;
-top:0px;
-z-index:1;
-background: #FFF;
-box-shadow:0 0.125rem 0.25rem rgba(0,0,0,0.08);
-`;
+
 const Top = styled.div`
 display: inline-flex;
 padding: 8px 48px;
@@ -53,13 +47,21 @@ const TopIcon = styled(FontAwesomeIcon)`
 
   }
 `
-const Bottom = styled.div`
+interface BottomProps {
+  isSticky:boolean
+}
+const Bottom = styled.div<BottomProps>`
   padding: 8px 48px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   transition: all 500ms ease;
+  position:sticky;
+  top:${({ isSticky }) => isSticky ? 0 : -100}px;
+box-shadow: ${({ isSticky }) => isSticky ?  "0 0.125rem 0.25rem rgba(0,0,0,0.08)" : "" };;
+  z-index:1;
+  background: #FFF;
   ${Tablet({
     paddingLeft: "24px",
     paddingRight: "24px",
@@ -223,6 +225,37 @@ ${Tablet({display:"initial"})}
     box-shadow: 0 0 0 4px;
   }
 `;
+interface ScrollToTopBtnProps {
+  visible:boolean
+}
+const ScrollToTopBtn = styled.button<ScrollToTopBtnProps>`
+  height:48px;
+  width:48px;
+  z-index:1;
+  position:fixed;
+  bottom:30px;
+  right:30px;
+  background-color: #015FC9;
+  border:1px solid #015FC9;
+  border-radius: 10px;
+  transition: all 150ms ease-out, opacity 500ms ease-in;
+  cursor:pointer;
+  opacity:${({ visible }) => visible ? 1 : 0};
+  visibility:${({ visible }) => visible ? "visible" : "hidden"};
+  &:hover {
+    border-color:#0DD3F1;
+    background-color: #0DD3F1;
+  }
+  &:focus {
+   box-shadow: 0 0 0 0.25rem rgba(39,119,209,0.5);
+  }
+`;
+const BtnIcon = styled(FontAwesomeIcon)`
+  & path {
+    color:#FFF;
+  }
+  
+`;
 const Header = () => {
   const [activeLink, setActiveLink] = React.useState("home");
    const {pathname} = useLocation()
@@ -265,8 +298,13 @@ const Header = () => {
     return ()=> window.removeEventListener("scroll", handleScroll)
    })
    const handleColor = (link:string) => activeLink === link ? "275FC9": "696E77"
+   const handleScrollToTop = () => {
+   window.scroll({
+    top:0,
+    behavior:"smooth"
+   })}
   return (
-    <Container>
+    <>
       <Top>
         <TopLeft>
           <TopLeftRow>
@@ -290,7 +328,7 @@ const Header = () => {
           <TopIcon icon={faInstagram}/>
         </TopRight>
       </Top>
-      <Bottom>
+      <Bottom isSticky={isSticky}>
         <LogoContainer to="/">
       <Logo src={`${process.env.PUBLIC_URL}/assets/icon/icon-02-primary.png`}/>
         <Title>Insure</Title>
@@ -318,7 +356,10 @@ const Header = () => {
         </NavContainer>
         <QuoteButton>Get A Quote</QuoteButton>
       </Bottom>
-    </Container>
+      {<ScrollToTopBtn visible={isSticky} onClick={handleScrollToTop}>
+        <BtnIcon icon={faArrowUp} size="lg"/>
+        </ScrollToTopBtn>}
+    </>
   )
 }
 

@@ -13,17 +13,24 @@ const Container = styled(PageRow)`
   }
 `;
 const Row = styled.div`
-flex:1;
 padding: 0 24px;
 color:#696E77;
 margin-top:48px;
-min-width:475px;
+min-width:465px;
 min-height:400px;
 ${Tablet({maxWidth:744})}
 ${XSmall({minWidth:"90%"})}
+flex:1;
 `;
 const Left = styled(Row)`
+  `;
+const LeftWrapper = styled.div`
+  border-bottom-right-radius: 10px;
   position:relative;
+  overflow:hidden;
+  height: 100%;
+  padding-left:48px;
+  padding-top:48px;
 `;
 const LeftTopBox = styled.div`
   height:200px;
@@ -32,7 +39,7 @@ const LeftTopBox = styled.div`
   border-bottom-right-radius:10px;
   position:absolute;
   top:0;
-  left:16px;
+  left:0;
   padding-right:16px;
   padding-bottom:16px;
 `;
@@ -57,15 +64,12 @@ const BoxText = styled.h5`
 color: #FFFFFF;
 `;
 const LeftImage = styled.img`
-  width:80%;
-  height:90%;
+  width:100%;
+  height:100%;
   object-fit:cover;
-  object-position: 0px 32px;
   position: absolute;
-  bottom:0;
-  right:24px; // padding right of the parent is 24px
-  border-bottom-right-radius: 10px;
- 
+  top:48px; // padding top of the parent is 48px
+  left:48px; // padding left of the parent is 48px
 `;
 const Right = styled(Row)`
 `;
@@ -124,6 +128,7 @@ const About = () => {
   return (
     <Container>
       <Left>
+      <LeftWrapper>
         <LeftImage src={`${publicUrl}/about/about.jpg`}/>
         <LeftTopBox>
           <LeftTopBoxChild>
@@ -132,6 +137,7 @@ const About = () => {
             <BoxText>Experience</BoxText>
           </LeftTopBoxChild>
         </LeftTopBox>
+      </LeftWrapper>
       </Left>
       <Right>
         <Title>We're Here To Assist You With Exploring Protection</Title>
