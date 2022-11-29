@@ -8,6 +8,7 @@ import Service from './pages/Service';
 import Feature from './pages/Feature';
 import Appointment from './pages/Appointment';
 import Team from './pages/Team';
+import Testimonial from './pages/Testimonial';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
   <Route path='/feature' element={<Feature/>}/>
   <Route path='/appointment' element={<Appointment/>}/>
   <Route path='/team' element={<Team/>}/>
+  <Route path='/testimonial' element={<Testimonial/>}/>
 </Routes>
 <Footer/>
     </BrowserRouter>

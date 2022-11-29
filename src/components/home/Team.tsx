@@ -181,6 +181,7 @@ const membersMemoized = React.useMemo(() => members.map(
         {hideTitle ? [...membersMemoized.slice(1),membersMemoized[0]]: membersMemoized}
       </CardsContainer>
     </Container>
+    
   )
 }
 
