@@ -114,7 +114,10 @@ const MediaIcon = styled(FontAwesomeIcon)`
     color: #015FC9;
   }
 `;
-const Team = () => {
+type TeamProps = {
+  hideTitle?: boolean
+}
+const Team = ({hideTitle}:TeamProps) => {
   interface Members {
     img:string;
     name:string;
@@ -143,38 +146,39 @@ const Team = () => {
   },
 ] , [])
 const BaseUrl = `${process.env.PUBLIC_URL}/assets/team/team-`
+const membersMemoized = React.useMemo(() => members.map(
+  (member,idx)=>
+  <Card key={idx}>
+    <CardImage src={`${BaseUrl}${member.img}.jpg`}/>
+    <CardBottom>
+      <CardTitle>{member.name}</CardTitle>
+      <CardSubTitle>{member.designation}</CardSubTitle>
+      </CardBottom>
+    <CardBottomHover>
+      <CardTitle>{member.name}</CardTitle>
+      <CardSubTitle>{member.designation}</CardSubTitle>
+      <MediaContainer>
+        <Media to="/">
+          <MediaIcon icon={faTwitter}/>
+        </Media>
+        <Media to="/">
+          <MediaIcon icon={faFacebookF}/>
+        </Media>
+        <Media to="/">
+          <MediaIcon icon={faYoutube}/>
+        </Media>
+        <Media to="/">
+          <MediaIcon icon={faLinkedinIn}/>
+        </Media>
+      </MediaContainer>
+    </CardBottomHover>
+  </Card>
+), [members,BaseUrl])
   return (
     <Container>
-      <Title>Meet Our Professional Team Members</Title>
+      {!hideTitle && <Title>Meet Our Professional Team Members</Title>}
       <CardsContainer>
-        {members.map(
-          (member,idx)=>
-          <Card key={idx}>
-            <CardImage src={`${BaseUrl}${member.img}.jpg`}/>
-            <CardBottom>
-              <CardTitle>{member.name}</CardTitle>
-              <CardSubTitle>{member.designation}</CardSubTitle>
-              </CardBottom>
-            <CardBottomHover>
-              <CardTitle>{member.name}</CardTitle>
-              <CardSubTitle>{member.designation}</CardSubTitle>
-              <MediaContainer>
-                <Media to="/">
-                  <MediaIcon icon={faTwitter}/>
-                </Media>
-                <Media to="/">
-                  <MediaIcon icon={faFacebookF}/>
-                </Media>
-                <Media to="/">
-                  <MediaIcon icon={faYoutube}/>
-                </Media>
-                <Media to="/">
-                  <MediaIcon icon={faLinkedinIn}/>
-                </Media>
-              </MediaContainer>
-            </CardBottomHover>
-          </Card>
-        )}
+        {hideTitle ? [...membersMemoized.slice(1),membersMemoized[0]]: membersMemoized}
       </CardsContainer>
     </Container>
   )
