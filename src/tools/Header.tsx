@@ -344,7 +344,7 @@ const Header = () => {
           <DropDown onClick={()=> !isDesktop && setShowDropDownList(!showDropDownList) }>
           <DropDownNavItem to="" onClick={(e)=>e.preventDefault()} color={handleColor("/page")}>Pages</DropDownNavItem>
           <DropDownList expand={showDropDownList}>
-            <DropDownItem to="/features">Features</DropDownItem>
+            <DropDownItem to="/feature">Features</DropDownItem>
             <DropDownItem to="/appointment">Appointment</DropDownItem>
             <DropDownItem to="/team">Team Members</DropDownItem>
             <DropDownItem to="/testimonial">Testimonial</DropDownItem>

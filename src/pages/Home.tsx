@@ -16,7 +16,7 @@ const Home = () => {
     <Facts/>
     <Features/>
     <Services/>
-    <Appointment/>
+    <Appointment defaultTheme={false}/>
     <Team/>
     <Testimonial/>
     </>

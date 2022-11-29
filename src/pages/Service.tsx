@@ -1,8 +1,13 @@
 import React from 'react'
+import PageHeader from '../components/CommonPages/PageHeader'
+import Services from '../components/home/Services'
 
 const Service = () => {
   return (
-    <div>Service</div>
+    <>
+    <PageHeader title='Services'/>
+    <Services/>
+    </>
   )
 }
 

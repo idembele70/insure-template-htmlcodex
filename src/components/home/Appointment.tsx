@@ -2,11 +2,15 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Small, SmallDesktop, Tablet, XSmall } from '../../tools/responsive';
-const Container = styled.div`
+
+interface MutableSCProps { // SC mean Styled Components
+  defaultTheme:boolean
+}
+const Container = styled.div<MutableSCProps>`
   width:100%;
   padding:48px 12px;
   margin:48px 0;
-  background: linear-gradient(rgba(1, 95, 201, .9), rgba(1, 95, 201, .9)), url(${process.env.PUBLIC_URL}/assets/appointment/appointment.jpg);
+  background: ${({ defaultTheme }) => defaultTheme ? "#FFF" : "linear-gradient(rgba(1, 95, 201, .9), rgba(1, 95, 201, .9)), url(${process.env.PUBLIC_URL}/assets/appointment/appointment.jpg)"};
   background-size:cover;
   background-position:center;
   background-repeat: no-repeat;
@@ -39,29 +43,30 @@ const Left = styled(Col)`
 display: flex;
 flex-direction:column;
 `;
-const LeftTitle = styled.h1`
-  color:#FFF;
+
+const LeftTitle = styled.h1<MutableSCProps>`
+  color #${({ defaultTheme }) => defaultTheme ? "15233C" : "FFF" };
   font-weight: 700;
   margin-bottom:48px;
   ${SmallDesktop({
     FontSize:"calc(1.375rem + 1.5vw)"
   })}
 `;
-const LeftDescription = styled.p`
-  color:#FFF;
+const LeftDescription = styled.p<MutableSCProps>`
+  color:#${({ defaultTheme }) => defaultTheme ? "696E77": "FFF" };
   font-size:1rem;
   margin-bottom:48px;
 `;
-const ContactContainer = styled.div`
+const ContactContainer = styled.div<MutableSCProps>`
   margin-top:auto;
-  background-color:#FFF;
+  background-color: #${({ defaultTheme }) => defaultTheme ? "F6F7FC" :"FFF" };
   border-radius: 10px;
   padding:16px;
   `;
-const Contact = styled.div`
+const Contact = styled.div<MutableSCProps>`
   border-radius: 10px;
   width:100%;
-  background-color: #015FC9;
+  background-color: #${({ defaultTheme }) => defaultTheme ? "FFF" : "015FC9"};
   padding:16px;
   display:flex;
   align-items:center;
@@ -72,8 +77,8 @@ const Image = styled.img`
   margin-right:16px;
   border-radius:50%;
 `;
-const ContactInfo = styled.h5`
-  color:#FFF;
+const ContactInfo = styled.h5<MutableSCProps>`
+  color: #${({ defaultTheme }) => defaultTheme ? "15233C": "FFF" };
   line-height: 1.2;
 `;
 const Right = styled(Col)`
@@ -83,10 +88,10 @@ const Right = styled(Col)`
     })
   }
 `;
-const Form = styled.form`
+const Form = styled.form<MutableSCProps>`
 border-radius:10px;
-  padding:48px;
-  background-color: #FFF;
+padding:48px;
+background-color:#${({ defaultTheme }) => defaultTheme ?  "F6F7FC": "FFF" };;
 `;
 const FormRow = styled.div`
 display: flex;
@@ -156,23 +161,26 @@ const Button = styled.button`
     background-color: #0DD3F1;
   }
 `;
-const Appointment = () => {
+type AppointmentProps = {
+  defaultTheme:boolean;
+}
+const Appointment = ({defaultTheme}:AppointmentProps) => {
   
   return (
-    <Container>
+    <Container defaultTheme={defaultTheme}>
       <Row>
         <Left>
-          <LeftTitle>We're Award Winning Insurance Company</LeftTitle>
-          <LeftDescription>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet. Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna.</LeftDescription>
-          <ContactContainer>
-            <Contact>
+          <LeftTitle defaultTheme={defaultTheme}>We're Award Winning Insurance Company</LeftTitle>
+          <LeftDescription defaultTheme={defaultTheme}>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet. Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna.</LeftDescription>
+          <ContactContainer defaultTheme={defaultTheme}>
+            <Contact defaultTheme={defaultTheme}>
               <Image src={`${process.env.PUBLIC_URL}/assets/appointment/profile.jpg`}/>
-              <ContactInfo>Call Us: +012 345 6789</ContactInfo>
+              <ContactInfo defaultTheme={defaultTheme}>Call Us: +012 345 6789</ContactInfo>
             </Contact>
           </ContactContainer>
         </Left>
-        <Right>
-        <Form>
+        <Right >
+        <Form defaultTheme={defaultTheme}>
         <FormRow>
           <Input placeholder="Your Name"/>
           <Input placeholder="Your Email"/>
