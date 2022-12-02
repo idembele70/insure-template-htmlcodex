@@ -1,10 +1,10 @@
  import { faFacebookF, faInstagram, faLinkedinIn, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { faClock, faEnvelopeOpen } from '@fortawesome/free-regular-svg-icons';
 import { faArrowUp, faBars, faPhone } from '@fortawesome/free-solid-svg-icons';
-import {  faEnvelopeOpen,faClock } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { Tablet } from './responsive';
 
 const Top = styled.div`

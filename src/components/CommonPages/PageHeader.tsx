@@ -42,6 +42,7 @@ const ListItem = styled.li`
 `;
 const ListLink = styled(Link)`
   text-decoration:none;
+font-weight:500;
   &:hover {
     color:#015FC9;
   }

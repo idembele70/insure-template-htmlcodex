@@ -146,7 +146,7 @@ const TextArea = styled.textarea`
     margin:"8px 0"
   })}
 `;
-const Button = styled.button`
+export const Button = styled.button`
   color:#FFF;
   font-size:16px;
   font-family: "Roboto", "sans-serif";
