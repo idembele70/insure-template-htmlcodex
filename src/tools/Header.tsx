@@ -122,6 +122,9 @@ const NavItem = styled(NavLink)<NavItemProps>`
   text-decoration: none;
   &:hover {
     color:#275FC9;
+    & path {
+      color:#275FC9;
+    }
   }
   font-weight: 600;
   font-size: 16px;
@@ -144,7 +147,10 @@ const DropDown = styled.div`
     padding: "8px 0",
   })} 
 `;
-const DropDownNavItem = styled(NavItem)`
+interface DropDownNavItemProps {
+  selected:boolean
+}
+const DropDownNavItem = styled(NavItem)<DropDownNavItemProps>`
   ::after{
     content: "\f107";
     font-family: "Font Awesome 5 Free";
@@ -153,6 +159,10 @@ const DropDownNavItem = styled(NavItem)`
   }
   & svg {
     margin-left:8px;
+  }
+  color: #${({ selected }) => selected ? "015FC9" :" 696E77" };
+  & path {
+    color: #${({ selected }) => selected ? "015FC9" :" 696E77" };
   }
 `;
 interface DropDownListProps {
@@ -180,16 +190,20 @@ const DropDownList = styled.div<DropDownListProps>`
     })
   }
   `;
-const DropDownItem = styled(NavLink)`
+  interface DropDownItemProps {
+    selected:boolean
+  }
+const DropDownItem = styled(NavLink)<DropDownItemProps>`
 width: 160px;
 height:32px;
 padding:4px 16px;
 box-sizing: border-box;
 text-decoration: none;
-color:#1C1E21;
+color: #${({ selected }) => selected ? "FFF" : "1C1E21"};
 &:hover {
   background-color: #E5E9EC;
 }
+background-color: ${({ selected }) => selected ? "#015FC9" :"transparent" };
 `;
 const QuoteButton = styled.a`
   border-radius: 10px;
@@ -274,7 +288,7 @@ const Header = () => {
   }, [])
 
    React.useEffect(() => {
-    if(["/features",
+    if(["/feature",
     "/appointment",
     "/team",
     "/testimonial",
@@ -342,13 +356,13 @@ const Header = () => {
           <NavItem to="/about" color={handleColor("/about")} >About Us</NavItem>
           <NavItem to="/service" color={handleColor("/service")} >Our Services</NavItem>
           <DropDown onClick={()=> !isDesktop && setShowDropDownList(!showDropDownList) }>
-          <DropDownNavItem to="" onClick={(e)=>e.preventDefault()} color={handleColor("/page")}>Pages</DropDownNavItem>
+          <DropDownNavItem to="" onClick={(e)=>e.preventDefault()} color={handleColor("/page")} selected={activeLink === "page"}>Pages</DropDownNavItem>
           <DropDownList expand={showDropDownList}>
-            <DropDownItem to="/feature">Features</DropDownItem>
-            <DropDownItem to="/appointment">Appointment</DropDownItem>
-            <DropDownItem to="/team">Team Members</DropDownItem>
-            <DropDownItem to="/testimonial">Testimonial</DropDownItem>
-            <DropDownItem to="/404">404 Page</DropDownItem>
+            <DropDownItem selected={pathname === "/feature"} to="/feature">Features</DropDownItem>
+            <DropDownItem selected={pathname === "/appointment"} to="/appointment">Appointment</DropDownItem>
+            <DropDownItem selected={pathname === "/team"} to="/team">Team Members</DropDownItem>
+            <DropDownItem selected={pathname === "/testimonial"} to="/testimonial">Testimonial</DropDownItem>
+            <DropDownItem selected={pathname === "/404"} to="/404">404 Page</DropDownItem>
           </DropDownList>
           </DropDown>
           <NavItem to="contact" color={handleColor("/contact")}>Contact Us</NavItem>
