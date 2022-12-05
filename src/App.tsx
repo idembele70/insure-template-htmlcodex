@@ -10,6 +10,7 @@ import Appointment from './pages/Appointment';
 import Team from './pages/Team';
 import Testimonial from './pages/Testimonial';
 import NotFound from './pages/NotFound';
+import Contact from './pages/Contact';
 
 function App() {
   return (
@@ -24,6 +25,8 @@ function App() {
   <Route path='/team' element={<Team/>}/>
   <Route path='/testimonial' element={<Testimonial/>}/>
   <Route path='/404' element={<NotFound/>}/>
+  <Route path='/contact' element={<Contact/>}/>
+  <Route path='*' element={<NotFound/>}/>
 </Routes>
 <Footer/>
     </BrowserRouter>
