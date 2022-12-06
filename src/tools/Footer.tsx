@@ -259,15 +259,15 @@ const Footer = () => {
         </Col>
         <Col>
         <ColTitle>Quick Links</ColTitle>
-        <QuickLinkRow to="/">
+        <QuickLinkRow to="/about">
           <QuickLinkIcon icon={faChevronRight}/>
           <QuickLinkText>About Us</QuickLinkText>
         </QuickLinkRow>
-        <QuickLinkRow to="/">
+        <QuickLinkRow to="/contact">
           <QuickLinkIcon icon={faChevronRight}/>
           <QuickLinkText>Contact Us</QuickLinkText>
         </QuickLinkRow>
-        <QuickLinkRow to="/">
+        <QuickLinkRow to="/service">
           <QuickLinkIcon icon={faChevronRight}/>
           <QuickLinkText>Our Services</QuickLinkText>
         </QuickLinkRow>

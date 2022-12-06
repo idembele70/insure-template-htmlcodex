@@ -97,7 +97,7 @@ const Facts = () => {
     <Left>
       <LeftTitle>For Individuals And Organisations</LeftTitle>
       <Paragraph>Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</Paragraph>
-    <Button to="/">More Details</Button>
+    <Button to="/about">More Details</Button>
     </Left>
     <Right>
       <RightCol>
