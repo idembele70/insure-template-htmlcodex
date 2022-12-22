@@ -16,17 +16,17 @@ function App() {
   return (
     <>
 <Header/>
-<Routes>
-  <Route path='/insure-template-htmlcodex/' element={<Home/>}/>
-  <Route path='/insure-template-htmlcodex/about' element={<About/>}/>
-  <Route path='/insure-template-htmlcodex/service' element={<Service/>}/>
-  <Route path='/insure-template-htmlcodex/feature' element={<Feature/>}/>
-  <Route path='/insure-template-htmlcodex/appointment' element={<Appointment/>}/>
-  <Route path='/insure-template-htmlcodex/team' element={<Team/>}/>
-  <Route path='/insure-template-htmlcodex/testimonial' element={<Testimonial/>}/>
-  <Route path='/insure-template-htmlcodex/404' element={<NotFound/>}/>
-  <Route path='/insure-template-htmlcodex/contact' element={<Contact/>}/>
-  <Route path='/insure-template-htmlcodex/*' element={<NotFound/>}/>
+<Routes >
+  <Route path='/' element={<Home/>}/>
+  <Route path='/about' element={<About/>}/>
+  <Route path='/service' element={<Service/>}/>
+  <Route path='/feature' element={<Feature/>}/>
+  <Route path='/appointment' element={<Appointment/>}/>
+  <Route path='/team' element={<Team/>}/>
+  <Route path='/testimonial' element={<Testimonial/>}/>
+  <Route path='/404' element={<NotFound/>}/>
+  <Route path='/contact' element={<Contact/>}/>
+  <Route path='*' element={<NotFound/>}/>
 </Routes>
 <Footer/>
     </>

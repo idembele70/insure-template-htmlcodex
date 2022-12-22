@@ -9,8 +9,8 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <BrowserRouter>
-    <GlobalStyle/>
+  <BrowserRouter basename='/insure-template-htmlcodex'>
     <App />
+    <GlobalStyle/>
   </BrowserRouter>
 );

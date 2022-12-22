@@ -14,6 +14,9 @@ const Container = styled.div`
 `;
 const Col = styled.div`
   width:50%;
+  ${Tablet({
+    width:"100%"
+  })}
   `;
 const Left = styled(Col)`
   background: linear-gradient(rgba(1, 95, 201, .9), rgba(1, 95, 201, .9)), url(
@@ -57,8 +60,7 @@ const RightCol = styled.div`
   flex:0 0 auto;
   width:50%;
   ${Tablet({
-    minWidth:210
-
+    minWidth:210,
   })}
 `;
 const RightColTitle = styled.h1`
