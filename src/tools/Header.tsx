@@ -11,7 +11,6 @@ import React from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { Tablet } from "./responsive";
-const Container = styled.div``;
 const Top = styled.div`
   display: inline-flex;
   padding: 8px 48px;
@@ -65,7 +64,7 @@ const Bottom = styled.div<BottomProps>`
   top: ${({ isSticky }) => (isSticky ? 0 : -100)}px;
   box-shadow: ${({ isSticky }) =>
     isSticky ? "0 0.125rem 0.25rem rgba(0,0,0,0.08)" : ""};
-  z-index: 1;
+  z-index: 9;
   background: #fff;
   ${Tablet({
     paddingLeft: "24px",
@@ -318,100 +317,108 @@ const Header = () => {
       behavior: "smooth",
     });
   };
+  // Navbar expand function handler
+  const handleExpand = () => {
+    const { style } = document.body;
+    if (!showNavbar) {
+      style.height = "100vh";
+      style.overflow = "hidden";
+    } else {
+      style.height = "initial";
+      style.overflow = "initial";
+      setShowDropDownList(false);
+    }
+    setShowNavbar(!showNavbar);
+  };
   return (
     <>
-      <Container data-aos="fade-in" data-aos-delay="500">
-        <Top>
-          <TopLeft>
-            <TopLeftRow>
-              <TopIcon icon={faPhone} size="sm" />
-              <TopLeftRowText>+012 345 6789</TopLeftRowText>
-            </TopLeftRow>
-            <TopLeftRow>
-              <TopIcon icon={faEnvelopeOpen} size="sm" />
-              <TopLeftRowText>info@example.com</TopLeftRowText>
-            </TopLeftRow>
-            <TopLeftRow>
-              <TopIcon icon={faClock} size="sm" />
-              <TopLeftRowText>Mon - Fri : 09 AM - 09 PM</TopLeftRowText>
-            </TopLeftRow>
-          </TopLeft>
-          <TopRight>
-            <TopIcon icon={faFacebookF} />
-            <TopIcon icon={faTwitter} />
-            <TopIcon icon={faLinkedinIn} />
-            <TopIcon icon={faInstagram} />
-          </TopRight>
-        </Top>
-        <Bottom isSticky={isSticky}>
-          <LogoContainer to="/">
-            <Logo
-              src={`${process.env.PUBLIC_URL}/assets/icon/icon-02-primary.png`}
-            />
-            <Title>Insure</Title>
-          </LogoContainer>
-          <Bars onClick={() => setShowNavbar(!showNavbar)}>
-            <FontAwesomeIcon icon={faBars} size="2x" />
-          </Bars>
-          <NavContainer expanded={showNavbar}>
-            <Nav>
-              <NavItem to="/" color={handleColor("/")}>
-                Home
-              </NavItem>
-              <NavItem to="/about" color={handleColor("/about")}>
-                About Us
-              </NavItem>
-              <NavItem to="/service" color={handleColor("/service")}>
-                Our Services
-              </NavItem>
-              <DropDown
-                onClick={() =>
-                  !isDesktop && setShowDropDownList(!showDropDownList)
-                }
+      <Top>
+        <TopLeft>
+          <TopLeftRow>
+            <TopIcon icon={faPhone} size="sm" />
+            <TopLeftRowText>+012 345 6789</TopLeftRowText>
+          </TopLeftRow>
+          <TopLeftRow>
+            <TopIcon icon={faEnvelopeOpen} size="sm" />
+            <TopLeftRowText>info@example.com</TopLeftRowText>
+          </TopLeftRow>
+          <TopLeftRow>
+            <TopIcon icon={faClock} size="sm" />
+            <TopLeftRowText>Mon - Fri : 09 AM - 09 PM</TopLeftRowText>
+          </TopLeftRow>
+        </TopLeft>
+        <TopRight>
+          <TopIcon icon={faFacebookF} />
+          <TopIcon icon={faTwitter} />
+          <TopIcon icon={faLinkedinIn} />
+          <TopIcon icon={faInstagram} />
+        </TopRight>
+      </Top>
+      <Bottom isSticky={isSticky}>
+        <LogoContainer to="/">
+          <Logo
+            src={`${process.env.PUBLIC_URL}/assets/icon/icon-02-primary.png`}
+          />
+          <Title>Insure</Title>
+        </LogoContainer>
+        <Bars onClick={handleExpand}>
+          <FontAwesomeIcon icon={faBars} size="2x" />
+        </Bars>
+        <NavContainer expanded={showNavbar}>
+          <Nav>
+            <NavItem to="/" color={handleColor("/")}>
+              Home
+            </NavItem>
+            <NavItem to="/about" color={handleColor("/about")}>
+              About Us
+            </NavItem>
+            <NavItem to="/service" color={handleColor("/service")}>
+              Our Services
+            </NavItem>
+            <DropDown
+              onClick={() =>
+                !isDesktop && setShowDropDownList(!showDropDownList)
+              }
+            >
+              <DropDownNavItem
+                to=""
+                onClick={(e) => e.preventDefault()}
+                color={handleColor("/page")}
+                selected={activeLink === "page"}
               >
-                <DropDownNavItem
-                  to=""
-                  onClick={(e) => e.preventDefault()}
-                  color={handleColor("/page")}
-                  selected={activeLink === "page"}
+                Pages
+              </DropDownNavItem>
+              <DropDownList expand={showDropDownList}>
+                <DropDownItem selected={pathname === "/feature"} to="/feature">
+                  Features
+                </DropDownItem>
+                <DropDownItem
+                  selected={pathname === "/appointment"}
+                  to="/appointment"
                 >
-                  Pages
-                </DropDownNavItem>
-                <DropDownList expand={showDropDownList}>
-                  <DropDownItem
-                    selected={pathname === "/feature"}
-                    to="/feature"
-                  >
-                    Features
-                  </DropDownItem>
-                  <DropDownItem
-                    selected={pathname === "/appointment"}
-                    to="/appointment"
-                  >
-                    Appointment
-                  </DropDownItem>
-                  <DropDownItem selected={pathname === "/team"} to="/team">
-                    Team Members
-                  </DropDownItem>
-                  <DropDownItem
-                    selected={pathname === "/testimonial"}
-                    to="/testimonial"
-                  >
-                    Testimonial
-                  </DropDownItem>
-                  <DropDownItem selected={pathname === "/404"} to="/404">
-                    404 Page
-                  </DropDownItem>
-                </DropDownList>
-              </DropDown>
-              <NavItem to="contact" color={handleColor("/contact")}>
-                Contact Us
-              </NavItem>
-            </Nav>
-          </NavContainer>
-          <QuoteButton>Get A Quote</QuoteButton>
-        </Bottom>
-      </Container>
+                  Appointment
+                </DropDownItem>
+                <DropDownItem selected={pathname === "/team"} to="/team">
+                  Team Members
+                </DropDownItem>
+                <DropDownItem
+                  selected={pathname === "/testimonial"}
+                  to="/testimonial"
+                >
+                  Testimonial
+                </DropDownItem>
+                <DropDownItem selected={pathname === "/404"} to="/404">
+                  404 Page
+                </DropDownItem>
+              </DropDownList>
+            </DropDown>
+            <NavItem to="contact" color={handleColor("/contact")}>
+              Contact Us
+            </NavItem>
+          </Nav>
+        </NavContainer>
+        <QuoteButton>Get A Quote</QuoteButton>
+      </Bottom>
       {
         <ScrollToTopBtn visible={isSticky} onClick={handleScrollToTop}>
           <BtnIcon icon={faArrowUp} size="lg" />
